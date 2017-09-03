@@ -14,15 +14,33 @@ function InitTable()
 
 }
 
-
-function add_taxonomy_for_pages()
-{
-	load_template(dirname(__FILE__)."/temptest.php", true);
-	
+function add_page_template ($templates) {
+    $templates['temptest.php'] = 'My Template';
+    return $templates;
 }
 
-// アクションフック
-add_action('registered_post_type','add_taxonomy_for_pages');
+add_filter ('theme_page_templates', 'add_page_template');
+
+function redirect_page_template ($template) {
+    if ('temptest.php' == basename ($template)){
+		$template = dirname(__FILE__)."/temptest.php";
+	}
+    return $template;
+}
+
+add_filter ('page_template', 'redirect_page_template');
+
+
+// function rt_include_gym_dashboard_page_template( $template ) {
+
+// 	if ( is_page( 'gym-dashboard' )  ) {
+// 			return dirname(__FILE__)."/temptest.php";
+// 	}
+
+// 	return $template;
+// }
+
+// add_filter( 'template_include', 'rt_include_gym_dashboard_page_template', 99 );
 
 //プラグイン有効化時にテーブルを作成
 register_activation_hook (__FILE__, 'InitTable');
