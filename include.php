@@ -22,6 +22,9 @@ function add_page_template ($templates) {
 add_filter ('theme_page_templates', 'add_page_template');
 
 function redirect_page_template ($template) {
+	var_dump($template);
+	var_dump($template);
+	exit;
     if ('temptest.php' == basename ($template)){
 		$template = dirname(__FILE__)."/temptest.php";
 	}
