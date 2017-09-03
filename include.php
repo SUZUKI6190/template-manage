@@ -15,24 +15,23 @@ function InitTable()
 }
 
 function add_page_template ($templates) {
-    $templates['temptest.php'] = 'My Template';
+	$templates['temptest.php'] = 'My Template';
+	$templates['temptest2.php'] = 'My Template2';
     return $templates;
 }
 
 add_filter ('theme_page_templates', 'add_page_template');
 
 function redirect_page_template ($template) {
-	var_dump($template);
-	var_dump($template);
-	exit;
+	var_dump(basename ($template));
+
     if ('temptest.php' == basename ($template)){
-		$template = dirname(__FILE__)."/temptest.php";
+		$template = dirname(__FILE__)."/template/temptest.php";
 	}
     return $template;
 }
 
 add_filter ('page_template', 'redirect_page_template');
-
 
 // function rt_include_gym_dashboard_page_template( $template ) {
 
