@@ -31,6 +31,11 @@ function redirect_page_template ($template) {
 
     if($template_name != 'default'){
         $template = dirname(__FILE__)."/template/".$template_name;
+        $template_data = implode( '', file( $template ) );
+		if ( preg_match( '|Template Name:(.*)$|mi', $template_data, $name ) ) {
+			var_dump(sprintf( __( '%s' ), _cleanup_header_comment( $name[1] ) ));
+		}
+        exit;
     }
 
     return $template;
