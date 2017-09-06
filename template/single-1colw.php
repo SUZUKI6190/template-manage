@@ -3,7 +3,7 @@
 Template Name Posts: 1カラムLP（画像ワイド）
 */
 ?>
-<?php include( TEMPLATEPATH . '/onecol-header.php' ); ?>
+<?php include( 'onecol-header.php' ); ?>
 
 <body id="onecol" style="background-color:<?php the_field('bgcw',$post->ID); ?>">
 <div style="background:url(<?php the_field( 'bgiw',$post->ID); ?>);">
@@ -29,4 +29,4 @@ Template Name Posts: 1カラムLP（画像ワイド）
 
 </article><!-- /.onecontw -->
 
-<?php include( TEMPLATEPATH . '/onecol-footer.php' ); ?>
+<?php include( 'onecol-footer.php' ); ?>

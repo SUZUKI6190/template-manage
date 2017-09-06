@@ -12,7 +12,7 @@
 <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
-<?php include( TEMPLATEPATH . '/lp_css.php' ); ?>
+<?php include( 'lp_css.php' ); ?>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/lp_img/scrolltop.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/lp_img/jquery.easing.1.3.js"></script>

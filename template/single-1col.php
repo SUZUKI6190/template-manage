@@ -3,7 +3,7 @@
 Template Name Posts: 1カラムLP
 */
 ?>
-<?php include( TEMPLATEPATH . '/onecol-header.php' ); ?>
+<?php include( 'onecol-header.php' ); ?>
 
 <body id="onecol" style="background-color:<?php the_field('bgc',$post->ID); ?>">
 <div style="background:url(<?php the_field( 'bgi',$post->ID); ?>);">
@@ -29,4 +29,4 @@ Template Name Posts: 1カラムLP
 
 </article><!-- /.onecont -->
 
-<?php include( TEMPLATEPATH . '/onecol-footer.php' ); ?>
+<?php include( 'onecol-footer.php' ); ?>

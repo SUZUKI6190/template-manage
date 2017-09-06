@@ -3,7 +3,7 @@
 Template Name: LP テンプレ
  */
 ?>
-<?php include( TEMPLATEPATH . '/onecol-header.php' ); ?>
+<?php include( 'onecol-header.php' ); ?>
 
 <body id="onecol" onload="Check()">
 
@@ -786,4 +786,4 @@ Template Name: LP テンプレ
 	<div>
 	<div>
 
-<?php include( TEMPLATEPATH . '/onecol-footer.php' ); ?>
+<?php include( 'onecol-footer.php' ); ?>
