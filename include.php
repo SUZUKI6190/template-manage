@@ -9,27 +9,26 @@ Author URI:
 */
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-class Define{
-const TempDir = "template";
-}
+require_once('function.php');
 
-function InitTable()
+function get_template_dir()
 {
-
+    return dirname(__FILE__)."/template";
 }
+
 function judge_extension($filename) {
     return substr($filename, strrpos($filename, '.') + 1);
 }
  
 function add_page_template ($templates) {
-    $dir = dirname(__FILE__)."/".Define::TempDir."/";
+    $dir = get_template_dir();
 
     $files = scandir($dir);
     $theme_file_list = [];
     foreach ($files as $file) {
         
         if (judge_extension($file) == "php") {
-            $full_path = dirname(__FILE__)."/".Define::TempDir."/".$file;
+            $full_path =$dir."/".$file;
             
             $template_data = implode( '', file( $full_path ) );
             if ( preg_match( '|Template Name:(.*)$|mi', $template_data, $name ) ) {
@@ -44,6 +43,7 @@ function add_page_template ($templates) {
 add_filter ('theme_page_templates', 'add_page_template');
 
 function redirect_page_template ($template) {
+    $dir = get_template_dir();
     // var_dump($template);
     // var_dump(bloginfo('template_directory'));
     $post_id = get_the_ID();
@@ -51,11 +51,14 @@ function redirect_page_template ($template) {
     $template_name = get_post_meta($post_id ,'_wp_page_template')[0];
 
     if($template_name != 'default'){
-        $template = dirname(__FILE__)."/".Define::TempDir."/".$template_name;
+        $template = $dir."/".$template_name;
+        /*
         $template_data = implode( '', file( $template ) );
 		if ( preg_match( '|Template Name:(.*)$|mi', $template_data, $name ) ) {
 			var_dump(sprintf( __( '%s' ), _cleanup_header_comment( $name[1] ) ));
-		}
+        }
+        exit;
+        */
         
     }
 
@@ -65,7 +68,12 @@ function redirect_page_template ($template) {
 add_filter ('page_template', 'redirect_page_template');
 
 
+function init_plugin()
+{
+
+}
+
 //プラグイン有効化時にテーブルを作成
-register_activation_hook (__FILE__, 'InitTable');
+register_activation_hook (__FILE__, 'init_plugin');
 
 ?>
