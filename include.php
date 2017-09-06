@@ -9,14 +9,35 @@ Author URI:
 */
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
+class Define{
+const TempDir = "template";
+}
+
 function InitTable()
 {
 
 }
-
+function judge_extension($filename) {
+    return substr($filename, strrpos($filename, '.') + 1);
+}
+ 
 function add_page_template ($templates) {
-	$templates['temptest.php'] = 'My Template';
-	$templates['temptest2.php'] = 'My Template2';
+    $dir = dirname(__FILE__)."/".Define::TempDir."/";
+
+    $files = scandir($dir);
+    $theme_file_list = [];
+    foreach ($files as $file) {
+        
+        if (judge_extension($file) == "php") {
+            $full_path = dirname(__FILE__)."/".Define::TempDir."/".$file;
+            
+            $template_data = implode( '', file( $full_path ) );
+            if ( preg_match( '|Template Name:(.*)$|mi', $template_data, $name ) ) {
+                $templates[$file] = $name[1];
+            }
+        }
+    }
+
     return $templates;
 }
 
@@ -30,12 +51,12 @@ function redirect_page_template ($template) {
     $template_name = get_post_meta($post_id ,'_wp_page_template')[0];
 
     if($template_name != 'default'){
-        $template = dirname(__FILE__)."/template/".$template_name;
+        $template = dirname(__FILE__)."/".Define::TempDir."/".$template_name;
         $template_data = implode( '', file( $template ) );
 		if ( preg_match( '|Template Name:(.*)$|mi', $template_data, $name ) ) {
 			var_dump(sprintf( __( '%s' ), _cleanup_header_comment( $name[1] ) ));
 		}
-        exit;
+        
     }
 
     return $template;
