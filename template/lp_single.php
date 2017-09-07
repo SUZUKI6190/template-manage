@@ -181,7 +181,7 @@ Template Name Posts: LP テンプレ
 		    <?php the_field('lp_intro_title02',$post->ID); ?>
 		  <?php endif; ?>
 		</p>
-	        <img src="<?php bloginfo('template_directory'); ?>/lp_img/arrow01.png" />
+	        <img src="<?php echo_template_url(); ?>/lp_img/arrow01.png" />
 	      </div>
 	    </div>
 	  </div>
@@ -280,7 +280,7 @@ Template Name Posts: LP テンプレ
 		    <?php the_field('lp_benefit_title02',$post->ID); ?>
 		  <?php endif; ?>
 		</p>
-	        <img src="<?php bloginfo('template_directory'); ?>/lp_img/arrow01.png" />
+	        <img src="<?php echo_template_url(); ?>/lp_img/arrow01.png" />
 	      </div>
 	    </div>
 	  </div>

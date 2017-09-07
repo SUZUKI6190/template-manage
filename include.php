@@ -16,9 +16,8 @@ function get_template_dir()
     return dirname(__FILE__)."/template";
 }
 
-function get_template_url()
 {
-    return  plugins_url("/template", __FILE__);
+    echo plugins_url("/template", __FILE__);
 }
 
 function judge_extension($filename) {
