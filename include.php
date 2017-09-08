@@ -16,6 +16,7 @@ function get_template_dir()
     return dirname(__FILE__)."/template";
 }
 
+function echo_template_url()
 {
     echo plugins_url("/template", __FILE__);
 }
