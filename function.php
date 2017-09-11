@@ -1,8 +1,8 @@
 <?php
 
-require_once ( 'template/functions-field_lp.php' );
-require_once ( 'template/functions-field_lpw.php' );
-require_once ( 'template/acf-wp-wysiwyg/acf-wp_wysiwyg.php');  
+require_once ( 'functions-field_lp.php' );
+require_once ( 'functions-field_lpw.php' );
+require_once ( 'acf-wp-wysiwyg/acf-wp_wysiwyg.php');  
 
 // モバイルユーザーエージェント判定（iPadを除外）
 function is_mobile() {

@@ -13,12 +13,12 @@ require_once('function.php');
 
 function get_template_dir()
 {
-    return dirname(__FILE__)."/template";
+    return dirname(__FILE__);
 }
 
 function echo_template_url()
 {
-    echo plugins_url("/template", __FILE__);
+    echo plugins_url("", __FILE__);
 }
 
 function judge_extension($filename) {
