@@ -12,6 +12,14 @@ function create_template_list()
     $theme_file_list = [];
     foreach ($files as $file) {
         
+        if($file == "function.php"){
+            continue;
+        }
+
+        if($file == "include.php"){
+            continue;
+        }
+
         if (judge_extension($file) == "php") {
             $full_path =$dir."/".$file;
             
@@ -25,8 +33,8 @@ function create_template_list()
     return $templates;
 }
 
-function add_page_template ($templates) {
-    return create_template_list();
+function add_page_template ($templates , $this, $post) {
+    return array_merge(create_template_list(), $templates);
 }
 
 function redirect_page_template ($template) {
