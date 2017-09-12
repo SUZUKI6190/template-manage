@@ -9,7 +9,7 @@ function create_template_list()
     $dir = get_template_dir();
     
     $files = scandir($dir);
-    $theme_file_list = [];
+    $templates = [];
     foreach ($files as $file) {
         
         if($file == "function.php"){
