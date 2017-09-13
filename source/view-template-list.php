@@ -33,8 +33,51 @@ function create_template_list()
     return $templates;
 }
 
+
+function create_post_template_list()
+{
+    $dir = get_template_dir();
+    
+    $files = scandir($dir);
+    $templates = [];
+    foreach ($files as $file) {
+        
+        if($file == "function.php"){
+            continue;
+        }
+
+        if($file == "include.php"){
+            continue;
+        }
+
+        if (judge_extension($file) == "php") {
+            $full_path =$dir."/".$file;
+            
+            $template_data = implode( '', file( $full_path ) );
+            if ( preg_match( '|Template Name:(.*)$|mi', $template_data, $name ) ) {
+                if ( preg_match( '|Template Post Type:(.*)$|mi', file_get_contents( $full_path ), $type ) ) {
+                    $types = explode( ',', _cleanup_header_comment( $type[1] ) );
+                    foreach($types as $type){
+                        $type = sanitize_key($type);
+                        if($type == "post"){
+                            $templates[$file] = $name[1];
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return $templates;
+}
+
+
 function add_page_template ($templates , $this, $post) {
     return array_merge(create_template_list(), $templates);
+}
+
+function add_post_template ($templates , $this, $post) {
+    return array_merge(create_post_template_list(), $templates);
 }
 
 function redirect_page_template ($template) {
