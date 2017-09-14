@@ -36,8 +36,9 @@ function create_template_list()
 function create_post_template_list()
 {
     $dir = get_template_dir();
-    
+
     $files = scandir($dir);
+    
     $templates = [];
     foreach ($files as $file) {
         
@@ -48,13 +49,12 @@ function create_post_template_list()
         if($file == "include.php"){
             continue;
         }
-
         if (judge_extension($file) == "php") {
             $full_path =$dir."/".$file;
             
             $template_data = implode( '', file( $full_path ) );
             if ( preg_match( '|Template Name:(.*)$|mi', $template_data, $name ) ) {
-                if ( preg_match( '|Template Post Type:(.*)$|mi', file_get_contents( $full_path ), $type ) ) {
+                if ( preg_match( '|Template Post Type:(.*)$|mi', $template_data, $type ) ) {
                     $types = explode( ',', _cleanup_header_comment( $type[1] ) );
                     foreach($types as $type){
                         $type = sanitize_key($type);
