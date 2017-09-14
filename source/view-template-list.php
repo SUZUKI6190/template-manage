@@ -33,7 +33,6 @@ function create_template_list()
     return $templates;
 }
 
-
 function create_post_template_list()
 {
     $dir = get_template_dir();
@@ -72,11 +71,11 @@ function create_post_template_list()
 }
 
 
-function add_page_template ($templates , $this, $post) {
+function add_page_template ($templates, $t, $post) {
     return array_merge(create_template_list(), $templates);
 }
 
-function add_post_template ($templates , $this, $post) {
+function add_post_template ($templates , $t, $post) {
     return array_merge(create_post_template_list(), $templates);
 }
 
