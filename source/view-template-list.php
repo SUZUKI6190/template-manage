@@ -79,13 +79,13 @@ function add_post_template ($templates , $t, $post) {
     return array_merge(create_post_template_list(), $templates);
 }
 
-function redirect_page_template ($template) {
+function redirect_page_template_base ($template, $get_temp_list) {
     
     $dir = get_template_dir();
 
     $post_id = get_the_ID();
 
-    $template_list = create_template_list();
+    $template_list = $get_temp_list();
 
     $template_name = get_post_meta($post_id ,'_wp_page_template')[0];
 
@@ -96,21 +96,16 @@ function redirect_page_template ($template) {
     return $template;
 }
 
+function redirect_page_template ($template) {
+    return redirect_page_template_base($template, function(){
+        return create_template_list();
+    });
+}
+
 function redirect_post_template ($template) {
-    
-    $dir = get_template_dir();
-
-    $post_id = get_the_ID();
-
-    $template_list = create_post_template_list();
-
-    $template_name = get_post_meta($post_id ,'_wp_page_template')[0];
-
-    if(array_key_exists($template_name, $template_list)){
-        $template = $dir."/".$template_name;       
-    }
-
-    return $template;
+    return  redirect_page_template_base($template, function(){
+        return create_post_template_list();
+    });
 }
 
 ?>
