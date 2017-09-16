@@ -21,11 +21,12 @@ function echo_template_url()
     echo plugins_url("", __FILE__);
 }
 
-
 add_filter ('theme_page_templates', 'add_page_template', 10, 3 );
 add_filter ('theme_post_templates', 'add_post_template', 10, 3 );
 
 add_filter ('page_template', 'redirect_page_template');
+
+add_filter ('single_template', 'redirect_post_template');
 
 //プラグイン有効化時
 function init_plugin()

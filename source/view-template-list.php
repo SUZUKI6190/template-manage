@@ -80,6 +80,7 @@ function add_post_template ($templates , $t, $post) {
 }
 
 function redirect_page_template ($template) {
+    
     $dir = get_template_dir();
 
     $post_id = get_the_ID();
@@ -95,5 +96,21 @@ function redirect_page_template ($template) {
     return $template;
 }
 
+function redirect_post_template ($template) {
+    
+    $dir = get_template_dir();
+
+    $post_id = get_the_ID();
+
+    $template_list = create_post_template_list();
+
+    $template_name = get_post_meta($post_id ,'_wp_page_template')[0];
+
+    if(array_key_exists($template_name, $template_list)){
+        $template = $dir."/".$template_name;       
+    }
+
+    return $template;
+}
 
 ?>
